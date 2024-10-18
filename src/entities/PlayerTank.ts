@@ -9,6 +9,7 @@ import {
 import createGameEntity, { GameEntity } from "./GameEntity";
 import createResourceManager from "../utils/ResourceManager";
 import createBullet from "./Bullet";
+import shootEffect from "../effects/ShootEffect";
 
 interface KeyboardState {
   LeftPressed: boolean;
@@ -87,6 +88,11 @@ function createPlayerTank(
     // create and load the bullet
     const bullet = createBullet(shootingPosition, rotation);
     await bullet.load();
+
+    const tantShootEffect = shootEffect(shootingPosition, rotation);
+    await tantShootEffect.load();
+    addToScene(tantShootEffect);
+
     addToScene(bullet);
   };
 
